@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 20, 2015, 10:24:40 PM
+    Author     : john
+*/
+
+body {
+      background-image: url("map.jpg");
+      background-repeat: repeat-x;
+      background-attachment: fixed;
+      }
+
+      div.body {
+      text-align: left;
+      margin: 25px auto;
+      padding: 25px;
+      width: 700px;
+      background-color: tan;
+      border: #2E1A12 solid 30px;
+      -webkit-border-image: url(borderimage.png) 30 30 stretch; /* Safari */
+      -moz-border-image: url(borderimage.png) 30 30 stretch; /* Firefox */
+      border-image: url(borderimage.png) 30 30 stretch;
+      background-image: url("Old_paper.png");
+      background-repeat: no-repeat;
+      }
+
+      #starTrek {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+      border: #2E1A12 solid 30px;
+      background-color: black;
+      -webkit-border-image: url(borderimage.png) 30 30 stretch; /* Safari */
+      -moz-border-image: url(borderimage.png) 30 30 stretch; /* Firefox */
+      border-image: url(borderimage.png) 30 30 stretch; /* css3 */
+      }
+
+      p {color: black;}
+
+      label {float: left;}
+      input {float: left;}
+      textarea {float: left;}
+      
+   div.post { 
+      text-align: left;
+      margin: 25px auto;
+      padding: 25px;
+      width: 400px;
+      background-color: tan;
+      border: #2E1A12 solid 15px;
+      -webkit-border-image: url(borderimage.png) 10 10 stretch; /* Safari */
+      -moz-border-image: url(borderimage.png) 10 10 stretch; /* Firefox */
+      border-image: url(borderimage.png) 10 10 stretch;
+      background-image: url("Old_paper.png");
+      background-repeat: no-repeat;
+   }
+    
+   span {
+       text-align: left
+   }
+      
