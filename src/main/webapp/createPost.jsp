@@ -51,7 +51,7 @@
     </nav>
     </header>
         <div class="container body">
-            <form class="form-horizontal" role="form" action="CreatePost" method="post">
+            <form class="form-horizontal" role="form" action="../CreatePost" method="post">
             <h1>Create a discussion about</h1>
             <h1>Lord of the Rings</h1>
             <label>Topic</label><br/>
