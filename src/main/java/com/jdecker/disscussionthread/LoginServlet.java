@@ -36,6 +36,8 @@ public class LoginServlet extends HttpServlet {
         String user = request.getParameter("username");
         String pwd = request.getParameter("password");
         String error = "Please enter ";
+        String url = null;
+        String newAttribute = null;
         
         if(user != null) {
             error += " User Name"; 
@@ -47,20 +49,23 @@ public class LoginServlet extends HttpServlet {
      
         if(pwd.equals("password") && user.equals("username")){
         
-        request.setAttribute("username", user);
+            url = "createPost.jsp";
+            newAttribute = user;
         
-         HttpSession session=request.getSession();  
-        
-         session.setAttribute("username", user);  
-        
-        request.getRequestDispatcher("createPost.jsp").forward(request, response);
     } else {
         
-        request.setAttribute("error", error);
-        
-        request.getRequestDispatcher("invalid.jsp").forward(request, response);
+            url = "invalid.jsp";
+            newAttribute = error;
             
         }
+        //this is due to the fact openshift hates multiple of these
+         HttpSession session=request.getSession();  
+        
+         session.setAttribute("username", newAttribute);  
+         
+         request.setAttribute("username", newAttribute);
+         
+         request.getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

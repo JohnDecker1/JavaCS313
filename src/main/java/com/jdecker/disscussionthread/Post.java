@@ -48,11 +48,11 @@ public class Post {
         this.time = dateFormat.format(cal.getTime());
         this.post = post;
         this.content = new File("postInfo.txt");
-        try {
-            if (this.content.createNewFile()){
-                System.out.println("File is created!");
-            }else{
-                System.out.println("File already exists.");
+       try {
+            
+            if (!(this.content.createNewFile())){
+                PrintWriter printWriter = new PrintWriter ("postError.txt");
+                printWriter.println("did not create file");
             }
         } catch (IOException ex) {
             Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
