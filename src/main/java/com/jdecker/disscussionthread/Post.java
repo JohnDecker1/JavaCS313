@@ -3,20 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jdecker.discussionthread;
+package com.jdecker.disscussionthread;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-import sun.rmi.runtime.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletOutputStream;
 
 /**
  *
@@ -32,14 +36,27 @@ public class Post {
      * This is the Non-Default constructor for a Post object.
      * @param topic
      * @param User
-     * @param time
      * @param post 
      */
-    public Post(String topic, String User, String time, String post) {
+    public Post(String topic, String User, String post) {
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        
         this.topic = topic;
         this.User = User;
-        this.time = time;
+        this.time = dateFormat.format(cal.getTime());
         this.post = post;
+        this.content = new File("postInfo.txt");
+        try {
+            if (this.content.createNewFile()){
+                System.out.println("File is created!");
+            }else{
+                System.out.println("File already exists.");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }
@@ -48,6 +65,24 @@ public class Post {
      * This is Default Constructor
      */
     public Post() {
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        
+        this.topic = "Untitled";
+        this.User = "ANON";
+        this.time = dateFormat.format(cal.getTime());
+        this.post = "The Salted Pork is especally tasty.";
+        this.content = new File("postInfo.txt");
+        try {
+            
+            if (!(this.content.createNewFile())){
+                PrintWriter printWriter = new PrintWriter ("postError.txt");
+                printWriter.println("did not create file");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getPost() {
@@ -99,11 +134,11 @@ public class Post {
     
     public void setContents(List<String> textBox) {
         try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(content.getAbsoluteFile(),true)));
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(content.getAbsolutePath(),true)));
             
             //iteratre through the file
-            for(String post : textBox){
-            out.println(post);
+            for(String temp : textBox){
+            out.println(temp);
             out.close();
             }
         } catch (IOException e) {
@@ -115,11 +150,11 @@ public class Post {
         
         List<String> format = new ArrayList<String>();
         
-        String userTime = "<h2>" + User + " : " + time + "</h2>";
-        String topics = "<h3>" + topic + "</h3>";
-        String content = "<p>" + post + "</p>";
+        String userTime = "<div class=\"post\"><p id=\"author\">Post by " + User + " : " + time + "</p>";
+        String topics = "<h3 class=\"topic\">" + topic + "</h3>";
+        String thread = "<p class=\"main\">" + post + "</p></div>";
         
-        format.add(userTime + topics + content);
+        format.add(userTime + topics + thread);
         
         return format;      
     }

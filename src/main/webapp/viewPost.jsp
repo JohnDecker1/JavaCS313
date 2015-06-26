@@ -4,6 +4,8 @@
     Author     : john
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.jdecker.disscussionthread.Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,6 +53,18 @@
     </header>
         <div class="container-fluid body">
         <h1>Current Post</h1>
+        <%
+            Post post = (Post)request.getAttribute("post");
+            
+            if(!(post == null)){
+                
+            List<String> getPost = post.getContents();
+            
+            for(String temp : getPost){
+                out.println(temp);
+            }
+            }
+            %>
         <a href="createPost.jsp">Back to Create a Post</a>
         </div>
     </body>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jdecker.discussionthread;
+package com.jdecker.disscussionthread;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -46,9 +47,13 @@ public class LoginServlet extends HttpServlet {
      
         if(pwd.equals("password") && user.equals("username")){
         
-        request.setAttribute("password", pwd);
+        request.setAttribute("username", user);
         
-        request.getRequestDispatcher("sign-in.jsp").forward(request, response);
+         HttpSession session=request.getSession();  
+        
+         session.setAttribute("username", user);  
+        
+        request.getRequestDispatcher("createPost.jsp").forward(request, response);
     } else {
         
         request.setAttribute("error", error);

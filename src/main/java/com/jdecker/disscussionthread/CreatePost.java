@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jdecker.discussionthread;
+package com.jdecker.disscussionthread;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +34,31 @@ public class CreatePost extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String topic = request.getParameter("ides");
+        String textBox = request.getParameter("discuss");
+        String error = "Please enter ";
         
+        
+        if (!(textBox.equals(" ") || textBox == null)) {
+            
+            String user;
+            
+             HttpSession session = request.getSession();  
+            user = (String) session.getAttribute("username");
+        
+            Post post = new Post(topic,user,textBox);
+            
+            post.setContents(post.formatPost());
+            
+        request.setAttribute("post", post);
+        
+        request.getRequestDispatcher("viewPost.jsp").forward(request, response);
+
+        } else {
+            request.setAttribute("error", error);
+
+            request.getRequestDispatcher("invalid.jsp").forward(request, response);
+        }
         
        
     }

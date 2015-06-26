@@ -1,0 +1,2 @@
+<div class="post"><p id="author">Post by username : 2015/06/25 22:40:29</p><h3 class="topic">Chickens</h3><p class="main">wings</p></div>
+<div class="post"><p id="author">Post by null : 2015/06/25 22:41:23</p><h3 class="topic">Chickens</h3><p class="main">wings</p></div>

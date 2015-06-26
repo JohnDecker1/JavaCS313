@@ -54,14 +54,15 @@
             <form class="form-horizontal" role="form" action="CreatePost" method="post">
             <h1>Create a discussion about</h1>
             <h1>Lord of the Rings</h1>
-        <label>Topic</label><br/>
-        <input type="text" name="topic"/>
+            <label>Topic</label><br/>
+            <input type="text" name="ides"/>
         <br/>
         <br/>
         <label>New Discussion</label>
         <br/>
         <br/>
-        <textarea name="discuss" rows="4" cols="50"></textarea>
+        <textarea name="discuss" rows="4" cols="90"></textarea>
+        <br/>
         <br/>
         <button type="submit" name="submit">Submit Discussion</button>
         <br/>
